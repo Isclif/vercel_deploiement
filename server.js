@@ -84,6 +84,7 @@ const exphbs = require("express-handlebars"); // Importe le moteur de template H
 const bodyparser = require("body-parser"); // Importe le middleware Body-parser pour analyser les corps de requêtes
 const http = require('http'); // Importe le module HTTP pour créer un serveur
 const socketIo = require("socket.io"); // Importe Socket.io pour la communication en temps réel
+const cors = require("cors");
 
 // Importe les contrôleurs pour gérer les différentes routes de l'application
 const homeController = require("./controllers/homeController");
@@ -132,7 +133,13 @@ server.listen(port, () => {
 });
 
 // Initialise Socket.io avec le serveur HTTP
-const io = socketIo(server);
+// const io = socketIo(server);
+const io = socketIo(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"]
+  }
+});
 
 
 io.on("connection", (socket) => {
