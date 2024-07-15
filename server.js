@@ -1,28 +1,99 @@
+// // require("./models/db"); // Charge le module de connexion à la base de données
+
+// const https = require('https'); // Importe le module HTTPS pour créer un serveur sécurisé
+// const express = require("express"); // Importe le framework Express pour créer des applications web
+// const path = require("path"); // Importe le module Path pour travailler avec les chemins de fichiers et de répertoires
+// const exphbs = require("express-handlebars"); // Importe le moteur de template Handlebars pour Express
+// const bodyparser = require("body-parser"); // Importe le middleware Body-parser pour analyser les corps de requêtes
+// const http = require('http')
+
+// // Importe les contrôleurs pour gérer les différentes routes de l'application
+// const homeController = require("./controllers/homeController");
+// const loginController = require("./controllers/loginController");
+// // const fileUpload = require("express-fileupload"); // Importe le middleware pour gérer les fichiers uploadés
+
+// const fs = require("fs"); // Importe le module FS pour travailler avec le système de fichiers
+
+var _userConnections = []; // Initialise un tableau pour stocker les connexions des utilisateurs
+// var app = express(); // Crée une application Express
+
+// // Configure le middleware Body-parser
+// app.use(
+//     bodyparser.urlencoded({
+//         extended: true,
+//     })
+// );
+// app.use(bodyparser.json()); // Configure le middleware pour parser les requêtes JSON
+
+// // Configure le moteur de template Handlebars
+// app.set("views", path.join(__dirname, "/views/"));
+// app.engine(
+//     "hbs",
+//     exphbs({
+//         extname: "hbs",
+//         defaultLayout: "mainLayout",
+//         layoutsDir: __dirname + "/views/layouts/",
+//     })
+// );
+// app.use(express.static(path.join(__dirname, "public"))); // Définit le dossier public pour les fichiers statiques
+// app.set("view engine", "hbs"); // Définit Handlebars comme moteur de vue
+
+// // Configure les routes de l'application
+// app.use("/", homeController);
+// app.use("/sign", loginController);
+
+// // Charger le certificat SSL et la clé pour le serveur HTTPS
+// // const options = {
+// //     key: fs.readFileSync('key.pem'),
+// //     cert: fs.readFileSync('cert.pem')
+// // };
+
+// // Crée un serveur HTTPS
+// // const server = https.createServer(options, app);
+
+// const server = http.createServer(app);
+
+// const ipAddress = '172.19.120.186';
+// const port = 3000;
+
+// // Démarre le serveur HTTPS
+// // server.listen(port, ipAddress, () => {
+// //     console.log(`Serveur démarré sur https://${ipAddress}:${port}/sign`);
+// // });
+
+// // Démarre le serveur HTTPS
+// server.listen(port, () => {
+//     console.log(`Serveur démarré sur le port ${port}`);
+// });
+
+
+// const io = require("socket.io")(server); // Initialise Socket.io avec le serveur HTTPS
+
+// Écoute chaque connexion
+
+
+
+// Code de deploiement
+
+
 // require("./models/db"); // Charge le module de connexion à la base de données
 
-const https = require('https'); // Importe le module HTTPS pour créer un serveur sécurisé
 const express = require("express"); // Importe le framework Express pour créer des applications web
 const path = require("path"); // Importe le module Path pour travailler avec les chemins de fichiers et de répertoires
 const exphbs = require("express-handlebars"); // Importe le moteur de template Handlebars pour Express
 const bodyparser = require("body-parser"); // Importe le middleware Body-parser pour analyser les corps de requêtes
-const http = require('http')
+const http = require('http'); // Importe le module HTTP pour créer un serveur
+const socketIo = require("socket.io"); // Importe Socket.io pour la communication en temps réel
 
 // Importe les contrôleurs pour gérer les différentes routes de l'application
 const homeController = require("./controllers/homeController");
 const loginController = require("./controllers/loginController");
 // const fileUpload = require("express-fileupload"); // Importe le middleware pour gérer les fichiers uploadés
 
-const fs = require("fs"); // Importe le module FS pour travailler avec le système de fichiers
-
-var _userConnections = []; // Initialise un tableau pour stocker les connexions des utilisateurs
 var app = express(); // Crée une application Express
 
 // Configure le middleware Body-parser
-app.use(
-    bodyparser.urlencoded({
-        extended: true,
-    })
-);
+app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json()); // Configure le middleware pour parser les requêtes JSON
 
 // Configure le moteur de template Handlebars
@@ -32,44 +103,38 @@ app.engine(
     exphbs({
         extname: "hbs",
         defaultLayout: "mainLayout",
-        layoutsDir: __dirname + "/views/layouts/",
+        layoutsDir: path.join(__dirname, "/views/layouts/"),
     })
 );
-app.use(express.static(path.join(__dirname, "public"))); // Définit le dossier public pour les fichiers statiques
 app.set("view engine", "hbs"); // Définit Handlebars comme moteur de vue
+
+// Configure les fichiers statiques
+app.use(express.static(path.join(__dirname, "public"))); // Définit le dossier public pour les fichiers statiques
 
 // Configure les routes de l'application
 app.use("/", homeController);
 app.use("/sign", loginController);
 
-// Charger le certificat SSL et la clé pour le serveur HTTPS
+// Charger le certificat SSL et la clé pour le serveur HTTPS (commenté car non utilisé)
 // const options = {
 //     key: fs.readFileSync('key.pem'),
 //     cert: fs.readFileSync('cert.pem')
 // };
 
-// Crée un serveur HTTPS
-// const server = https.createServer(options, app);
-
+// Crée un serveur HTTP
 const server = http.createServer(app);
 
-const ipAddress = '172.19.120.186';
-const port = 3000;
+const port = process.env.PORT || 3000;
 
-// Démarre le serveur HTTPS
-// server.listen(port, ipAddress, () => {
-//     console.log(`Serveur démarré sur https://${ipAddress}:${port}/sign`);
-// });
-
-// Démarre le serveur HTTPS
+// Démarre le serveur HTTP
 server.listen(port, () => {
     console.log(`Serveur démarré sur le port ${port}`);
 });
 
+// Initialise Socket.io avec le serveur HTTP
+const io = socketIo(server);
 
-const io = require("socket.io")(server); // Initialise Socket.io avec le serveur HTTPS
 
-// Écoute chaque connexion
 io.on("connection", (socket) => {
     console.log(socket.id);
 
