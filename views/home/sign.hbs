@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Host or Join in meeting</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./../../materialize.min.css">
+    <link rel="stylesheet" href="./../../stylee.css">
+    <style>
+        #chat-area::-webkit-scrollbar {
+            display: none;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <div class="main-wrap">
+        <div class="call-wrap card" style="z-index: 99">
+
+            <!-- <div class="remote-user">One</div> -->
+            <div class="action-wrap" style="display: flex;justify-content: center; align-items: center;padding:30px;">
+                <div style="display:flex; justify-content:center;align-items:center;background-color:#00554d;height:50px;max-width:200px;min-width:200px;font-size:20px;align-self:center;color:white;margin-right:50px;border-radius:5px;cursor:pointer;" class="host-meeting">Host</div>
+                <div style="display:flex; justify-content:center;align-items:center;background-color:#00554d;height:50px;max-width:200px;min-width:200px;font-size:20px;align-self:center;color:white;border-radius:5px;cursor:pointer;" class="join-meeting">Join</div>
+            </div>
+
+            <!-- <div class="record-action">
+                <button id="start-recording" class="btn btn-small waves-effect red" disabled>Start Recording</button>
+                <button id="download-video" class="btn btn-small waves-effect teal" disabled> Download Vedio</button>
+            </div>
+            <div class="row">
+                <div class="col m12">
+                    <input type="text" name="" id="username-input" placeholder="Username">
+                    <button id="call-btn" class="btn waves-effect"> Call</button>
+                </div>
+            </div> -->
+        </div>
+
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="assets/js/materialize.min.js"></script>
+    <script src="assets/js/client.js"></script>
+    <script>
+        $(function() {
+
+            const urlParams = new URLSearchParams(window.location.search);
+
+            var meeting_id = urlParams.get('meetingID');
+
+            if (!meeting_id) {
+
+                // var murl = window.location.origin + "?meetingID=" + (new Date()).getTime();
+                // $('#meetingid').attr('href', murl).text(murl);
+                $(document).on("click", ".join-meeting", function() {
+                    $(".action-wrap").empty().html('<div class="row"> <form class="col s12"> <a href="/sign"><i class="material-icons prefix">arrow_back</i></a><div class="row"> <div class="input-field col s6" style="width: 100%;"> <i class="material-icons prefix">call_to_action</i> <input id="icon_prefix" type="text" class="validate join-value" placeholder="Enter meeting code..."> </div> </div> <button class="btn waves-effect waves-light teal darken-2 join-submit" type="submit" name="action">Join<i class="material-icons right">send</i></button></form> </div>')
+                })
+
+                $(document).on("click", ".join-submit", function(e) {
+                    e.preventDefault();
+                    var join_value = $("input.join-value").val();
+                    var meetingUrl = window.location.origin + "?meetingID=" + join_value;
+                    window.location.replace(meetingUrl);
+                })
+                $(document).on("click", ".host-meeting", function(e) {
+                    let eight_d_number = Math.floor(Math.random() * 100000000);
+                    var meetingUrl = window.location.origin + "?meetingID=" + eight_d_number;
+                    window.location.replace(meetingUrl);
+                })
+
+                return;
+            } else {
+                $("#remote-video").empty();
+            }
+
+            var user_id = urlParams.get('uid');
+            if (!user_id) {
+
+                user_id = window.prompt('Enter your nick!');
+            }
+
+
+            if (!user_id || !meeting_id) {
+                alert('user id or meeting id missing');
+                return;
+            }
+
+        })
+
+    </script>
+
+</body>
+
+</html>

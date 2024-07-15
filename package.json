@@ -1,0 +1,32 @@
+{
+  "name": "project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "engines": {
+    "node": "14.x"
+  },
+  "scripts": {
+    "start": "nodemon server"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
+    "express-handlebars": "^3.0.0",
+    "https": "^1.0.0",
+    "jquery": "^3.6.0",
+    "mongoose": "^5.11.19",
+    "multer": "^1.4.2",
+    "multer-gridfs-storage": "^4.2.0",
+    "nodemon": "^2.0.7",
+    "socket.io": "^2.4.1",
+    "socket.io-client": "^3.1.2",
+    "socket.io-file": "^2.0.31",
+    "socket.io-file-client": "^2.0.2",
+    "streamifier": "^0.1.1"
+  }
+}

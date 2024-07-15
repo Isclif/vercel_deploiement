@@ -1,0 +1,302 @@
+body{
+    font-size: large;
+    background-image: url(../images/bg.png) !important;
+}
+a {
+    color: #007bff00;
+    text-decoration: none;
+    background-color: transparent;
+}
+a:hover {
+    color: #007bff00;
+    text-decoration: none;
+    background-color: transparent;
+}
+/* .userbox {
+    margin-left: 20px;
+    padding: 8px;
+    width: 450px;
+    border: 1px solid transparent;
+    color: var(--fc-medium);
+    border-color: var(--powder-400);
+    background-color: burlywood;
+    float: left;
+} */
+
+/* .userbox video {
+    display: inline-block;
+    border: 1px solid red;
+    margin: 0;
+    padding: 0;
+    width: 450px;
+    height: 300px;
+} */
+
+.footer{
+    font-size: large;
+
+}
+body {
+    font-family: roboto, lato !important;
+
+}
+
+ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+    margin: 0px;
+    padding: 0;
+}
+
+textarea:focus,
+input:focus {
+    outline: none !important;
+}
+
+.logo {
+    height: 43px;
+}
+
+a.navbar-brand.text-dark {
+    font-size: 27px;
+    padding-left: 10px;
+    font-family: 'Lato';
+}
+
+.nav-item a {
+    color: gray !important;
+    font-size: 16px;
+    padding: 0 10px;
+}
+
+a.nav-link {
+    font-weight: 600;
+}
+
+li.nav-item {
+    padding: 0 10px;
+}
+
+.signin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.jumbotron {
+    background-color: #ffffff !important;
+}
+
+img.signin-image {
+    height: 390px;
+    border: 25px solid white;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px grey;
+}
+
+.display-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ..............home.html............ */
+
+
+
+.g-top {
+    height: 90vh;
+    position: relative;
+}
+
+.g-top-left {
+    position: absolute;
+    right: 0;
+    height: 8vh;
+    top: 0;
+    border-bottom-left-radius: 10px;
+}
+
+.g-bottom {
+    /*    height: 10vh;*/
+    margin: 0 -10px !important;
+    padding: 0 20px;
+    box-shadow: 0px 0px 5px black;
+    z-index: 2;
+}
+
+.home-wrap {
+    background-color: rgb(31, 30, 30);
+}
+
+.bottom-left {
+    position: relative;
+}
+
+.g-detail {
+    position: absolute;
+}
+
+.g-detail {
+    position: absolute;
+    width: 30vw;
+    background-color: white;
+    margin-top: -135px;
+    color: black;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.bottom-left {
+    padding: 5px;
+}
+
+
+
+.g-details-heading-show {
+    font-size: 14px;
+    padding-left: 10px;
+}
+
+.action-icon-style {
+    height: 40px;
+    width: 40px;
+    border: 1px solid lightgray;
+    border-radius: 50%;
+    font-size: 8px !important;
+}
+
+.action-icon-style span.material-icons {
+    font-size: 17px;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+    padding: 5px;
+}
+.cursor-pointer:hover {
+    cursor: pointer;
+    background-color: rgb(226, 225, 225);
+    padding: 5px;
+    border-radius: 5px;
+
+}
+
+.end-call-wrap {
+    -ms-transform: rotate(135deg);
+    /* IE 9 */
+    transform: rotate(135deg);
+    /* Standard syntax */
+}
+
+.top-left-you-wrap {
+    height: 100%;
+    width: 100%;
+    flex-basis: 25%;
+    margin-right: -8px;
+    background-color: black !important;
+    font-size: 12px;
+}
+
+.top-left-participant-wrap {
+    position: relative;
+}
+
+.top-left-participant-count {
+    position: absolute;
+    top: -2px;
+    right: -3px;
+    font-size: 15px;
+}
+.top-remote-video-show-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-image: url(../images/bg.png) !important;
+}
+/* .......Modal......... */
+.top-box {
+    background-color: rgb(14 6 6);
+    position: fixed;
+    width: 30%;
+    height: 30%;
+    top: 20.5%;
+    left: 35.5%;
+    display: block;
+    box-shadow: 0 0 5px black;
+    border-radius: 10px;
+    z-index: 999;
+    color:white;
+}
+
+.align-vertical-middle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+.in-call-chat-wrap.mr-3.ml-3 {
+    height: 69vh;
+    overflow-y: scroll;
+}
+.in-call-chat-wrap::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .in-call-chat-wrap{
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  .chat-show-wrap.text-secondary {
+    font-size: 14px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.video-wrap {
+    /* width: 60vw; */
+    height: 600px;
+}
+
+.video-wrap > * {
+
+    flex: 1 1 250px;
+    border: 1px solid white;
+    /* background-color:brown; */
+}
+
+
+.call-wrap {
+    position: relative;
+    display: block;
+    padding: 10px;
+}
+.div-center-column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+video{
+    border: 1px solid;
+}
+.recording-wrap {
+    position: absolute;
+    font-size: 14px;
+    width: 120px;
+    margin-bottom: 186px;
+    background-color: white;
+    /* padding: 5px 10px; */
+    margin-right: 14px;
+    font-weight: 600;
+    color: red;
+}
